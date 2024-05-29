@@ -1,0 +1,54 @@
+{
+  "enableDebugLog": true,
+  "siteId": "WCE-POC-00001",
+  "webApi": {
+    "baseUrl": "https://localhost:7153"
+  },
+  "interfaces": {
+    "anpr": {
+      "engineType": "RECOANPR",
+      "mqtt": {
+        "ip": "[ip]",
+        "port": 1883,
+        "topics": ["offloader/VMS13/01/data", "offloader/VMS13/02/data"]
+      }
+    },
+    "imageNetworkDirectory": {
+      "url": "//[ip]/anpr",
+      "username": "[username]",
+      "password": "[password]"
+    }
+  },
+  "laneSetup": [
+    {
+      "laneId": "LANE-00001",
+      "anpr": {},
+      "speedRadar": null,
+      "rfidReader": {
+        "ip": "[ip]",
+        "antennaPort": [1, 2]
+      }
+    },
+    {
+      "laneId": "LANE-00002",
+      "anpr": {
+        "engineType": "RECOANPR",
+        "mqtt": {
+          "ip": "[ip]",
+          "port": 1883,
+          "topics": "offloader/VMS13/02/data"
+        },
+        "imageNetworkDirectory": {
+          "url": "//[ip]/anpr",
+          "username": "[username]",
+          "password": "[password]"
+        }
+      },
+      "speedRadar": {},
+      "rfidReader": {
+        "ip": "[ip]",
+        "antennaPort": [3, 4]
+      }
+    }
+  ]
+}

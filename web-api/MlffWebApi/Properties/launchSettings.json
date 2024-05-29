@@ -1,0 +1,29 @@
+{
+	"profiles": {
+		"MlffWebApi": {
+			"commandName": "Project",
+			"launchBrowser": true,
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development",
+				"USE_AZURE_SIGNAL_R_SERVICE": "false",
+				"USE_HTTPS_REDIRECTION": "false",
+				"ENABLE_SWAGGER_UI": "true",
+				"ENABLE_POST_FULL_IMAGE": "false",
+				"ENABLE_POST_LICENSE_PLATE": "false",
+				"IMAGE_OUTPUT_DIRECTORY": "C:/Recogine/MLFF/image",
+				"DB_CONNECTION_STRING": "Host=[ip]:5432;Database=MlffWebApi;Username=[username];Password=[admin]",
+				"SIGNALR_CONNECTION_STRING": ""
+			},
+			"applicationUrl": "http://localhost:5187;https://localhost:7153;",
+			"dotnetRunMessages": true
+		},
+		"Docker": {
+			"commandName": "Docker",
+			"launchBrowser": true,
+			"launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+			"publishAllPorts": true,
+			"useSSL": true
+		}
+	},
+	"$schema": "https://json.schemastore.org/launchsettings.json"
+}

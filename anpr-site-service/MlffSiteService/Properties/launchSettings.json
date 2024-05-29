@@ -1,0 +1,34 @@
+﻿{
+  "profiles": {
+    "MlffSiteService": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "TZ": "Asia/Kuala_Lumpur",
+        "ENABLE_DEBUG_LOG": "true",
+        "ENABLE_SIMULATION": "true",
+        "SIMULATION_COUNT": "1",
+        "SEARCH_WINDOW_IN_MILLISECONDS": "200",
+        "SITE_ID": "WCE-POC-00001",
+        "MLFF_WEB_API_BASE_URL": "https://localhost:7153",
+        "LOG_OUTPUT_PATH": "C:/Recogine/MLFF",
+        "ENABLE_ANPR_SERVICE": "true",
+        "ANPR_ENGINE_TYPE": "RECOANPR",
+        "ANPR_MQTT_SERVER_IP": "[ip]",
+        "ANPR_MQTT_SERVER_PORT": "1883",
+        "ANPR_MQTT_TOPICS_SEPARATED_BY_COMMA": "offloader/VMS13/01/data,offloader/VMS13/02/data",
+        "ANPR_IMAGE_NETWORK_PATH": "//[ip]/anpr",
+        "ANPR_IMAGE_DIRECTORY_USERNAME": "[username]",
+        "ANPR_IMAGE_DIRECTORY_PASSWORD": "[password]",
+        "ENABLE_SPEED_RADAR_SERVICE": "false",
+        "SPEED_RADAR_IP": "[ip]",
+        "SPEED_RADAR_PORT": "8234",
+        "ENABLE_RFID_SERVICE": "true",
+        "RFID_READER_IP": "[ip]",
+        "RFID_LONG_RANGE_DETECTOR_PORT": "1",
+        "RFID_SHORT_RANGE_DETECTOR_PORT": "2"
+      }
+    }
+  }
+}

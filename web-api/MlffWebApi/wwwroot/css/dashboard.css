@@ -1,0 +1,459 @@
+﻿@font-face {
+    font-family: Roboto;
+    src: url(../fonts/Roboto/Roboto-Medium.ttf) format("truetype");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+    letter-spacing: 3px;
+    --scroll-bar-background: rgb(66, 66, 66);
+    --scroll-bar-thumb-color: rgb(0, 0, 0);
+    --alert-image: url("../images/alert.png");
+}
+
+#signalRPanel {
+    padding: 1rem;
+    height: 100%;
+    width: 30vw;
+    border-right: 1px solid rgb(100 100 100);
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scroll-bar-background);
+    border-radius: 6px;
+    /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-bar-thumb-color);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid var(--scroll-bar-background);
+    /* creates padding around scroll thumb */
+}
+
+body {
+    height: 100vh;
+    background: black;
+    color: white;
+    display: flex;
+}
+
+#statusContainer {
+    border-radius: 2px;
+    padding: 6px;
+    height: 32px;
+}
+
+#statusContainer[status="init"] {
+    background: gray;
+    color: black;
+}
+
+#statusContainer[status="init"]::before {
+    content: 'Waiting for initialized';
+}
+
+#statusContainer[status="connected"] {
+    background: green;
+}
+
+#statusContainer[status="connected"]::before {
+    content: 'Connected';
+}
+
+#statusContainer[status="disconnected"] {
+    background: red;
+}
+
+#statusContainer[status="disconnected"]::before {
+    content: 'Disconnected';
+}
+
+#statusContainer[status="connecting"] {
+    background: rgb(255, 192, 56);
+    color: black;
+}
+
+#statusContainer[status="connecting"]::before {
+    content: 'Connecting';
+}
+
+#messageToolbar {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+#messageToolbar .message-filter {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#messageToolbar .message-filter input {
+    margin-right: 0.25rem;
+    cursor: pointer;
+}
+
+#messageToolbar button {
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem;
+    background-color: rgb(168, 168, 168);
+    cursor: pointer;
+    right: 0;
+    bottom: 0;
+    letter-spacing: normal;
+    opacity: .5;
+    border: 0;
+    color: white;
+}
+
+#messageToolbar button:hover {
+    opacity: 1 !important;
+}
+
+#messageContainer {
+    flex-grow: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-right: 0.5rem;
+}
+
+#messageContainer .message-content {
+    position: relative;
+    padding: .875rem;
+    background: rgb(40, 40, 40);
+    border-radius: .25rem;
+}
+
+#messageContainer .message-content table {
+    width: 100%;
+}
+
+#messageContainer .message-content table td,
+#messageContainer .message-content table th {
+    padding: 0.25rem 1rem;
+    border: 1px solid gray;
+    text-align: left;
+    font-size: 0.75rem;
+}
+
+#messageContainer .message-content table th {
+    white-space: nowrap;
+}
+
+#messageContainer .message-content table thead tr td div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#messageContainer .message-content .copy-as-json {
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem;
+    background-color: rgb(100, 100, 100);
+    cursor: pointer;
+    right: 0;
+    bottom: 0;
+    letter-spacing: normal;
+    opacity: .5;
+    border: 0;
+    color: white;
+}
+
+.message-content .copy-as-json:hover {
+    opacity: 1 !important;
+}
+
+.message-content .msg-type {
+    border-radius: 0.25rem;
+    padding: 0.25rem 1rem;
+}
+
+.message-content .msg-type[type="anpr"] {
+    background-color: rgb(40, 40, 255);
+}
+
+.message-content .msg-type[type="speed"] {
+    background-color: rgb(4, 94, 67);
+}
+
+.message-content .msg-type[type="rfid"] {
+    background-color: rgb(71, 0, 157);
+}
+
+.message-content .msg-type[type="matched"] {
+    background-color: rgb(212, 107, 0);
+}
+
+.message-content .msg-type[type="watchlist"] {
+    background-color: rgb(87, 1, 27);
+}
+
+.message-content tbody tr {
+    display: flex;
+}
+
+.message-content tbody tr td {
+    width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-grow: 1;
+}
+
+.message-content tbody tr th {
+    width: 150px;
+}
+
+.message-content .watchlist {
+    background-image: var(--alert-image);
+    height: 22px;
+    aspect-ratio: 1;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 12px;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    border: 1px solid white;
+    padding: 0.5rem;
+    background: rgb(38 38 38);
+    z-index: 1;
+    -webkit-animation: image-tooltip-animation 0.5s ease-in;
+    animation: image-tooltip-animation 0.5s ease-in;
+    /* overflow: hidden; */
+}
+
+.tooltip.show {
+    display: block;
+}
+
+.tooltip::before {
+    content: " ";
+    position: absolute;
+    top: calc(50% - 7.07px);
+    left: 0%;
+    margin-left: -5px;
+    border: 5px solid rgb(38 38 38);
+    rotate: 45deg;
+    box-shadow: 0px 0px 0 1px white;
+}
+
+.tooltip::after {
+    content: " ";
+    position: absolute;
+    width: 8px;
+    height: 25px;
+    background: rgb(38 38 38);
+    top: calc(50% - 15px);
+    left: 0%;
+}
+
+.tooltip .tooltip-image {
+    max-width: 250px;
+}
+
+.tooltip[data-type="Plate Image"] {
+    left: 180px;
+    top: 97px;
+}
+
+.tooltip[data-type="Vehicle Image"] {
+    left: 180px;
+    top: 84px;
+}
+
+@keyframes image-tooltip-animation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes blinker {
+    80% {
+        opacity: 0;
+    }
+}
+
+@keyframes text-focus-in {
+    0% {
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+#displayPanel .box-area {
+    outline: 1px solid rgb(100 100 100);
+    font-size: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    height: 50%;
+    width: 50%;
+}
+
+#plateNumber,
+#rfidTag,
+#speedIndicator {
+    padding: 1rem;
+    -webkit-animation: text-focus-in 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: text-focus-in 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+
+#speedIndicator {
+    white-space: nowrap;
+}
+
+#vehicleImageContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50vh;
+}
+
+#vehicleImageContainer::before,
+#vehicleImageContainer::after {
+    content: " ";
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.watchlist::before,
+.watchlist::after {
+    background-image: var(--alert-image);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: blinker 2s ease-in-out infinite;
+}
+
+#vehicleImage {
+    flex-grow: 1;
+    text-align: center;
+    height: 100%;
+}
+
+#vehicleImage img {
+    height: 100%;
+}
+
+#plateImage {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+#rfidTag {
+    font-size: 1.5rem !important;
+}
+
+#speedIndicator,
+#rfidTag {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.logo-container {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1000px) {
+    #signalRPanel {
+        display: none;
+    }
+}
+
+@media (orientation: portrait) {
+    #vehicleImage {
+        height: auto;
+    }
+
+    #vehicleImage img {
+        width: 100vw;
+        height: auto !important;
+    }
+
+    #detectionContainer {
+        flex-wrap: nowrap;
+        width: 100vw;
+    }
+
+    .box-area {
+        height: 100px !important;
+        width: 100vw !important;
+    }
+
+    #plateNumber, #speedIndicator {
+        font-size: 32px;
+    }
+
+    #rfidTag {
+        font-size: 1rem !important;
+        padding: 0;
+    }
+}
+
+@media (max-width: 1000px) and (orientation: landscape) {
+    #displayPanel {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #displayPanel #vehicleImage {
+        width: 50vw;
+        object-fit: cover;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #displayPanel #vehicleImage img {
+        height: auto;
+        width: 100%;
+    }
+
+    #displayPanel #detectionContainer {
+        width: 50vw;
+    }
+
+    .box-area {
+        height: 25vh !important;
+        width: 100% !important;
+    }
+}

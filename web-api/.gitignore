@@ -1,0 +1,14 @@
+// Jetbrain Rider 
+.idea/
+
+// Visual Studio
+**/.vs/
+
+// Build file and folder
+**/bin/
+**/obj/
+
+// Https Cert
+**/HttpsCertificate/
+
+**/*.tar

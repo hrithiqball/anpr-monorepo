@@ -1,0 +1,13 @@
+# Jetbrain Riders
+.idea
+
+# Microsoft Visual Studio
+.vs
+
+# Build
+**/bin/
+**/obj/
+
+**/*.tar
+
+*.DotSettings.user

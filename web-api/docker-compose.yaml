@@ -1,0 +1,84 @@
+﻿version: "3.9"
+
+services:
+  web-api:
+    image: mlff-web-api:1.0
+    restart: unless-stopped
+    ports:
+      - 1[ip]:6533:80
+    networks:
+      - internal-net
+    depends_on:
+      - database
+    logging:
+      options:
+        max-size: "1m"
+        max-file: "1000"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - images-data:/images
+    env_file:
+      - docker-compose.env
+
+  database:
+    image: postgres:14.5-alpine
+    networks:
+      - internal-net
+    restart: unless-stopped
+    ports:
+      - 1[ip]:54321:5432
+    logging:
+      options:
+        max-size: "1m"
+        max-file: "1000"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - db-data:/var/lib/postgresql/data
+      - sql-scripts:/docker-entrypoint-initdb.d
+    env_file:
+      - docker-compose.env
+
+  pgadmin:
+    image: dpage/pgadmin4:6.18
+    ports:
+      - 1[ip]:6534:80
+    networks:
+      - internal-net
+    restart: unless-stopped
+    env_file:
+      - docker-compose.env
+    logging:
+      options:
+        max-size: "1m"
+        max-file: "1000"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+networks:
+  internal-net:
+    driver: bridge
+
+volumes:
+  images-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/web-api/images
+
+  db-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/db
+
+  sql-scripts:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./sql-scripts

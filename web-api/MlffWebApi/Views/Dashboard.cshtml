@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recogine MLFF</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link href="/css/dashboard.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div id="signalRPanel">
+    <div style="display:flex;align-items: center;gap:1rem">
+        <span>SignalR message:</span>
+        <div id="statusContainer" status="connecting"></div>
+    </div>
+    <div id="messageToolbar">
+        <div class="message-filter">
+            <div>
+                <input type="checkbox" checked data-type="MATCHED" id="checkboxMatched"/><label for="checkboxMatched">MATCHED</label>
+            </div>
+            <div>
+                <input type="checkbox" checked data-type="RFID" id="checkboxRfid"/><label for="checkboxRfid">RFID</label>
+            </div>
+            <div>
+                <input type="checkbox" checked data-type="SPEED" id="checkboxSpeed"/><label for="checkboxSpeed">SPEED</label>
+            </div>
+            <div>
+                <input type="checkbox" checked data-type="ANPR" id="checkboxAnpr"/><label for="checkboxAnpr">ANPR</label>
+            </div>
+        </div>
+        <button id="clearAllMessage">Clear All</button>
+    </div>
+    <div id="messageContainer"></div>
+</div>
+<div id="displayPanel" style="flex-grow: 1;height:100%;position: relative;">
+    <div style="position:absolute;padding: 1rem;font-size: 1.5rem;" id="siteId"></div>
+    <div id="vehicleImageContainer">
+        <div id="vehicleImage">
+        </div>
+    </div>
+    <div id="detectionContainer" style="display: flex;flex-direction: column;height: 50vh;min-height:400px;flex-wrap:wrap">
+        <div class="box-area" id="plateImage">
+
+        </div>
+        <div class="box-area">
+            <div class="logo-container">
+                <img src="/images/car.png" alt="car" style="width:100%;filter: invert(100%);">
+            </div>
+            <div id="plateNumber" style="flex-grow: 1"></div>
+        </div>
+        <div class="box-area">
+            <div class="logo-container">
+                <img src="/images/myrfid.png" alt="myrfid" style="width:100%;filter: brightness(0) invert(100%);">
+            </div>
+            <div id="rfidTag" style="flex-grow: 1"></div>
+        </div>
+        <div class="box-area">
+            <div class="logo-container">
+                <img src="/images/speedometer.png" alt="speed" style="width:100%;filter: invert(100%);scale: 0.8">
+            </div>
+            <div id="speedIndicator" style="flex-grow: 1"></div>
+        </div>
+    </div>
+
+</div>
+<script src="./lib/signalr/signalr.js"></script>
+<script src="./lib/jquery/jquery.3.6.1.js"></script>
+<script src="./js/dashboard.js"></script>
+</body>
+
+</html>

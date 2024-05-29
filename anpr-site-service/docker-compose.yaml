@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  "mlff-site-service":
+    container_name: mlff-site-service
+    image: mlff-site-service:1.0
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    env_file:
+      - docker-compose.env
+    logging:
+      options:
+        max-size: "1m"
+        max-file: "1000"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./logs:~/mlff

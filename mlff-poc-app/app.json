@@ -1,0 +1,42 @@
+{
+    "expo": {
+        "name": "MLFF",
+        "slug": "MultiLaneFreeFlow",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./assets/ANPR.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/ANPR.png",
+                "backgroundColor": "#FFFFFF"
+            },
+            "package": "com.hrithiqball.MLFF",
+            "config": {
+                "googleMaps": {
+                    "apiKey": "AIzaSyCaorcOeMLekPDriZX_SDscgo9gHd9EEuQ"
+                }
+            }
+        },
+        "web": {
+            "favicon": "./assets/ANPR.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "d109687e-b768-4e5f-a4e4-582e73b8078f"
+            }
+        }
+    }
+}

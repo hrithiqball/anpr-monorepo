@@ -1,0 +1,24 @@
+
+[*]
+
+# ReSharper properties
+resharper_blank_lines_after_multiline_statements = 1
+resharper_blank_lines_around_single_line_auto_property = 1
+resharper_braces_for_ifelse = required
+resharper_csharp_max_line_length = 153
+resharper_csharp_remove_blank_lines_near_braces_in_declarations = false
+resharper_csharp_wrap_parameters_style = wrap_if_long
+resharper_instance_members_qualify_declared_in = base_class
+resharper_place_simple_anonymousmethod_on_single_line = false
+resharper_wrap_chained_binary_expressions = chop_if_long
+resharper_wrap_object_and_collection_initializer_style = chop_always
+resharper_wrap_parameters_style = wrap_if_long
+
+# Microsoft .NET properties
+csharp_new_line_before_members_in_object_initializers = false
+csharp_preferred_modifier_order = public, private, protected, internal, file, new, static, abstract, virtual, sealed, readonly, override, extern, unsafe, volatile, async, required:suggestion
+
+[*.{cs,vb}]
+dotnet_diagnostic.cs8602.warning = none
+dotnet_diagnostic.cs8618.warning = none
+dotnet_diagnostic.ca2254.warning = none
